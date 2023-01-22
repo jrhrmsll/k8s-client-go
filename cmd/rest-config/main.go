@@ -22,8 +22,8 @@ func main() {
 		}
 
 		kubeconfig := path.Join(home, ".kube/config")
-		if envvar := os.Getenv("KUBECONFIG"); len(envvar) > 0 {
-			kubeconfig = envvar
+		if env, ok := os.LookupEnv("KUBECONFIG"); ok {
+			kubeconfig = env
 		}
 
 		config, err = clientcmd.BuildConfigFromFlags("", kubeconfig)
